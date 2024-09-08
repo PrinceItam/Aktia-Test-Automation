@@ -1,0 +1,20 @@
+{
+  "type": "object",
+  "properties": {
+    "Success": { "type": "boolean" },
+    "Error": { "type": ["string", "null"] },
+    "Data": {
+      "type": "object",
+      "properties": {
+        "AccessToken": { "type": "string" },
+        "ExpiresAt": { "type": "string", "format": "date-time" },
+        "Id": { "type": "integer" },
+        "Email": { "type": "string", "format": "email" },
+        "FullName": { "type": "string" },
+        "PhoneNumber": { "type": "string" }
+      },
+      "required": ["AccessToken", "ExpiresAt", "Id", "Email", "FullName", "PhoneNumber"]
+    }
+  },
+  "required": ["Success", "Error", "Data"]
+}

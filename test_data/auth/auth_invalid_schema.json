@@ -1,0 +1,15 @@
+{
+  "type": "object",
+  "properties": {
+    "Success": {
+      "type": "boolean",
+      "enum": [false]
+    },
+    "Error": {
+      "type": "string",
+      "enum": ["Please check your credentail, Invalid username or password. Please try again"]
+    },
+    "Data": { "type": ["null", "object"] }
+  },
+  "required": ["Success", "Error", "Data"]
+}

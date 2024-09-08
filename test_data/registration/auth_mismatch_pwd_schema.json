@@ -1,0 +1,33 @@
+{
+  "type": "object",
+  "properties": {
+    "errors": {
+      "type": "object",
+      "properties": {
+        "ConfirmPassword": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "enum": ["'ConfirmPassword' and 'Password' do not match."]
+          }
+        }
+      },
+      "required": ["ConfirmPassword"]
+    },
+    "type": {
+      "type": "string",
+      "format": "uri"
+    },
+    "title": {
+      "type": "string"
+    },
+    "status": {
+      "type": "integer",
+      "enum": [400]
+    },
+    "traceId": {
+      "type": "string"
+    }
+  },
+  "required": ["errors", "type", "title", "status", "traceId"]
+}

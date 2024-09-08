@@ -1,0 +1,18 @@
+{
+    "data":
+    {
+         "valid_credentials":
+            {
+                "email": "test@example.com",
+                "password": "12345"
+            },
+        "invalid_credentials": {
+            "email": "invalid@example.com",
+            "password": "wrongpassword"
+        },
+        "short_password": {
+            "email": "test@example.com",
+            "password": "123"
+        }
+    }
+}

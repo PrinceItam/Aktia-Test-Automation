@@ -1,0 +1,17 @@
+{
+  "type": "object",
+  "properties": {
+    "Success": {
+      "type": "boolean",
+      "enum": [false]
+    },
+    "Error": {
+      "type": "string",
+      "enum": ["Email already in use. please log in instead"]
+    },
+    "Data": {
+      "type": ["object", "null"]
+    }
+  },
+  "required": ["Success", "Error", "Data"]
+}

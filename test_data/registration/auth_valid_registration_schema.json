@@ -1,0 +1,18 @@
+{
+  "type": "object",
+  "properties": {
+        "Success": {"type": "boolean", "enum": [true]},
+        "Error": {"type": ["string", "null"]},
+        "Data": {
+            "type": "object",
+            "properties": {
+                "Id": {"type": "integer"},
+                "Email": {"type": "string"},
+                "FullName": {"type": "string"},
+                "PhoneNumber": {"type": "string"}
+            },
+            "required": ["Id", "Email", "FullName", "PhoneNumber"]
+        }
+    },
+    "required": ["Success", "Error", "Data"]
+}

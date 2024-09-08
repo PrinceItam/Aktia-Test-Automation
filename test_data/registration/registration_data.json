@@ -1,0 +1,40 @@
+{
+  "data":
+  {
+    "valid_user_details": {
+      "email": "myuser@example.com",
+      "fullName": "test user",
+      "phoneNumber": "9415128845",
+      "password": "12345",
+      "confirmPassword": "12345"
+    },
+    "invalid_user_pwd": {
+      "email": "myuser@example.com",
+      "fullName": "test user",
+      "phoneNumber": "9415128845",
+      "password": "1233",
+      "confirmPassword": "1233"
+    },
+    "invalid_user_email": {
+      "email": "invalidexample.com",
+      "fullName": "test user",
+      "phoneNumber": "9415128845",
+      "password": "12343",
+      "confirmPassword": "12345"
+    },
+    "pwd_mismatch": {
+      "email": "myuser@example.com",
+      "fullName": "test user",
+      "phoneNumber": "9415128845",
+      "password": "12345",
+      "confirmPassword": "12349"
+    },
+    "already_used_email": {
+      "email": "myuser@example.com",
+      "fullName": "test user",
+      "phoneNumber": "9415128845",
+      "password": "12345",
+      "confirmPassword": "12345"
+    }
+  }
+}

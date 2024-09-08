@@ -1,0 +1,15 @@
+#logs
+logs
+*.log
+
+# results
+results
+
+# virtual environment
+virtual_env
+auth.env
+main.py
+report.html
+
+
+
