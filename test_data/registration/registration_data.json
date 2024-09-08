@@ -2,7 +2,7 @@
   "data":
   {
     "valid_user_details": {
-      "email": "myuser@example.com",
+      "email": "myuser+100@example.com",
       "fullName": "test user",
       "phoneNumber": "9415128845",
       "password": "12345",

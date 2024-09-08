@@ -1,7 +1,7 @@
 *** Settings ***
 Library           OperatingSystem
 Library           Collections
-Resource          ../pages/auth_page.resource
+Resource          ../pages/auth_logic_page.resource
 Resource          ../keywords/custom_keywords.robot
 
 *** Test Cases ***

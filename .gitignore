@@ -1,15 +1,19 @@
 #logs
 logs
 *.log
+log.html
+output.xml
 
 # results
 results
+.pabotsuitenames
 
 # virtual environment
 virtual_env
 auth.env
 main.py
 report.html
+.idea
 
 
 
