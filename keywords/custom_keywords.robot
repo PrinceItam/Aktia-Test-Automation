@@ -12,6 +12,12 @@ setup testdata
    ...                  key=${key}
    RETURN               ${payload}
 
+setup valid emaildata
+   [Arguments]          ${data}     ${key}
+   ${payload}           prepare test payload
+   ...                  path=test_data/${data}/${data}_data.json
+   ...                  key=${key}
+   RETURN               ${payload}
 
 Check Valid login Schema
     [Arguments]          ${data}        ${test}

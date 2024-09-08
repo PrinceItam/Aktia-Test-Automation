@@ -3,12 +3,18 @@
 ## Overview
 API test automation using Robotframework test for two endpoints
 ## Table of Contents
+- Prerequisites
 - Installation
 - Usage
 - Test Cases
 - Running Tests
 - Contributing
 - License
+
+## Prerequisites
+
+Python 3.10
+
 
 ## Installation
 Step by Step guide in installing this project

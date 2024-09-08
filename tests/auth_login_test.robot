@@ -17,7 +17,7 @@ Verify successful login with valid credentials
 Verify authetication failure with wrong email
     [Documentation]    Verify that the API returns an error with invalid login credentials
     [Tags]              login
-    ${payload}=        setup testdata   data=auth       key=invalid_credentials
+    ${payload}=        setup valid emaildata   data=auth       key=invalid_credentials
     Post Auth Request
     ...             payload=${payload}
     Check Login with Invalid Credentials    data=auth       test=valid

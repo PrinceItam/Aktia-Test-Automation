@@ -3,7 +3,7 @@ import json
 from jsonschema import validate
 from robot.api.deco import keyword
 from robot.libraries.BuiltIn import BuiltIn, RobotNotRunningError
-import string
+import random
 
 class StartConnection:
     def __init__(self):
@@ -24,11 +24,23 @@ class StartConnection:
         resp = requests.post(url=url, json=json.loads(jsonPaylad), verify=True)
         self.builtin.set_test_variable('${RESPONSE}', resp)
 
+    @keyword('prepare test payload')
+    def prepare_test_payload(self, path: str, key: str):
+        with open(path, 'r', encoding='utf-8') as of:
+            json_data = json.load(of)
+            payload = json_data['data'][key]
+            random_int = random.randint(1, 100)
+            if 'email' in payload:
+                email_parts = payload['email'].split('@')
+                payload['email'] = f"{email_parts[0]}+{random_int}@{email_parts[1]}"
+
+            return payload
+
     @keyword('prepare payload')
     def prepare_payload(self, path: str, key: str):
         with open(path, 'r', encoding='utf-8') as of:
-            json_data = json.load(of)
-            return json_data['data'][key]
+            json_test_data = json.load(of)
+            return json_test_data['data'][key]
 
     @keyword('validate schema')
     def validate_schema(self, expected_resp_body: dict, resp: dict = None):

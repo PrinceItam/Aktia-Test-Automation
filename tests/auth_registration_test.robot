@@ -8,7 +8,7 @@ Resource          ../keywords/custom_keywords.robot
 Valid User Registration
     [Documentation]    Verify that the API returns success with valid credentials
     [Tags]              signup
-    ${payload}=        setup testdata  data=registration       key=valid_user_details
+    ${payload}=        setup valid emaildata  data=registration       key=valid_user_details
     Post Auth Request
     ...             payload=${payload}
 
