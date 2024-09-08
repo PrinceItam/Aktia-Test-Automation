@@ -42,8 +42,8 @@ pabot --processes 4 --outputdir results --report report.html --log log.html test
 robot -i signup -d results tests/*.robot
 robot -i login -d results tests/*.robot
 
-# For windows users run tests from the run_tests.cmd file
-run.cmd
+# Windows single click tests run from the run_tests.bat file
+run_tests.bat
 ```
 ## Reports
 
