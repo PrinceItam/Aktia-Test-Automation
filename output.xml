@@ -1,0 +1,353 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generator="Robot 7.0.1 (Python 3.10.0 on darwin)" generated="2024-09-08T05:00:24.033932" rpa="false" schemaversion="5">
+<suite id="s1" name="Auth Registration Test">
+<suite id="s1-s1" name="Auth Registration Test" source="/Users/princeitam/Desktop/Aktia/tests/auth_registration_test.robot">
+<test id="s1-s1-t1" name="Valid User Registration" line="8">
+<kw name="setup testdata" owner="custom_keywords">
+<kw name="prepare payload" owner="StartConnection">
+<msg time="2024-09-08T05:00:24.145609" level="INFO">${payload} = {'email': 'myuser@example.com', 'fullName': 'test user', 'phoneNumber': '9415128845', 'password': '12345', 'confirmPassword': '12345'}</msg>
+<var>${payload}</var>
+<arg>path=test_data/${data}/${data}_data.json</arg>
+<arg>key=${key}</arg>
+<status status="PASS" start="2024-09-08T05:00:24.145158" elapsed="0.000470"/>
+</kw>
+<return>
+<value>${payload}</value>
+<status status="PASS" start="2024-09-08T05:00:24.145833" elapsed="0.000023"/>
+</return>
+<msg time="2024-09-08T05:00:24.145919" level="INFO">${payload} = {'email': 'myuser@example.com', 'fullName': 'test user', 'phoneNumber': '9415128845', 'password': '12345', 'confirmPassword': '12345'}</msg>
+<var>${payload}</var>
+<arg>data=registration</arg>
+<arg>key=valid_user_details</arg>
+<status status="PASS" start="2024-09-08T05:00:24.144779" elapsed="0.001151"/>
+</kw>
+<kw name="Post Auth Request" owner="auth_registration_page">
+<kw name="Establish Post Request" owner="StartConnection">
+<msg time="2024-09-08T05:00:24.868461" level="INFO">${RESPONSE} = &lt;Response [200]&gt;</msg>
+<arg>url=${BASE_URL}</arg>
+<arg>payload=${payload}</arg>
+<status status="PASS" start="2024-09-08T05:00:24.146171" elapsed="0.722564"/>
+</kw>
+<arg>payload=${payload}</arg>
+<status status="PASS" start="2024-09-08T05:00:24.146015" elapsed="0.722939"/>
+</kw>
+<kw name="Check Valid User Registration Schema" owner="custom_keywords">
+<kw name="Set Test Variable" owner="BuiltIn">
+<msg time="2024-09-08T05:00:24.871620" level="INFO">${status_code} = 200</msg>
+<arg>${status_code}</arg>
+<arg>${RESPONSE.status_code}</arg>
+<doc>Makes a variable available everywhere within the scope of the current test.</doc>
+<status status="PASS" start="2024-09-08T05:00:24.870122" elapsed="0.001559"/>
+</kw>
+<kw name="convert json to dictionary" owner="StartConnection">
+<msg time="2024-09-08T05:00:24.872208" level="INFO">${content} = {'Success': False, 'Error': 'Email already in use. please log in instead', 'Data': None}</msg>
+<var>${content}</var>
+<status status="PASS" start="2024-09-08T05:00:24.871844" elapsed="0.000397"/>
+</kw>
+<kw name="convert json to dictionary" owner="StartConnection">
+<msg time="2024-09-08T05:00:24.874661" level="INFO">${expected} = {'type': 'object', 'properties': {'Success': {'type': 'boolean', 'enum': [True]}, 'Error': {'type': ['string', 'null']}, 'Data': {'type': 'object', 'properties': {'Id': {'type': 'integer'}, 'Email': {...</msg>
+<var>${expected}</var>
+<arg>file=test_data/registration/auth_valid_registration_schema.json</arg>
+<status status="PASS" start="2024-09-08T05:00:24.872381" elapsed="0.002316"/>
+</kw>
+<kw name="validate schema" owner="StartConnection">
+<msg time="2024-09-08T05:00:24.879552" level="FAIL">ValidationError: False is not one of [True]
+
+Failed validating 'enum' in schema['properties']['Success']:
+    {'type': 'boolean', 'enum': [True]}
+
+On instance['Success']:
+    False</msg>
+<arg>${expected}</arg>
+<arg>${content}</arg>
+<status status="FAIL" start="2024-09-08T05:00:24.874820" elapsed="0.006592">ValidationError: False is not one of [True]
+
+Failed validating 'enum' in schema['properties']['Success']:
+    {'type': 'boolean', 'enum': [True]}
+
+On instance['Success']:
+    False</status>
+</kw>
+<arg>data=registration</arg>
+<arg>test=email</arg>
+<status status="FAIL" start="2024-09-08T05:00:24.869482" elapsed="0.012079">ValidationError: False is not one of [True]
+
+Failed validating 'enum' in schema['properties']['Success']:
+    {'type': 'boolean', 'enum': [True]}
+
+On instance['Success']:
+    False</status>
+</kw>
+<doc>Verify that the API returns success with valid credentials</doc>
+<tag>signup</tag>
+<status status="FAIL" start="2024-09-08T05:00:24.144459" elapsed="0.737358">ValidationError: False is not one of [True]
+
+Failed validating 'enum' in schema['properties']['Success']:
+    {'type': 'boolean', 'enum': [True]}
+
+On instance['Success']:
+    False</status>
+</test>
+<test id="s1-s1-t2" name="Verify Invalid Password fails authetication" line="17">
+<kw name="setup testdata" owner="custom_keywords">
+<kw name="prepare payload" owner="StartConnection">
+<msg time="2024-09-08T05:00:24.883648" level="INFO">${payload} = {'email': 'myuser@example.com', 'fullName': 'test user', 'phoneNumber': '9415128845', 'password': '1233', 'confirmPassword': '1233'}</msg>
+<var>${payload}</var>
+<arg>path=test_data/${data}/${data}_data.json</arg>
+<arg>key=${key}</arg>
+<status status="PASS" start="2024-09-08T05:00:24.883112" elapsed="0.000562"/>
+</kw>
+<return>
+<value>${payload}</value>
+<status status="PASS" start="2024-09-08T05:00:24.883726" elapsed="0.000036"/>
+</return>
+<msg time="2024-09-08T05:00:24.883878" level="INFO">${payload} = {'email': 'myuser@example.com', 'fullName': 'test user', 'phoneNumber': '9415128845', 'password': '1233', 'confirmPassword': '1233'}</msg>
+<var>${payload}</var>
+<arg>data=registration</arg>
+<arg>key=invalid_user_pwd</arg>
+<status status="PASS" start="2024-09-08T05:00:24.882766" elapsed="0.001134"/>
+</kw>
+<kw name="Post Auth Request" owner="auth_registration_page">
+<kw name="Establish Post Request" owner="StartConnection">
+<msg time="2024-09-08T05:00:25.479592" level="INFO">${RESPONSE} = &lt;Response [400]&gt;</msg>
+<arg>url=${BASE_URL}</arg>
+<arg>payload=${payload}</arg>
+<status status="PASS" start="2024-09-08T05:00:24.884365" elapsed="0.595408"/>
+</kw>
+<arg>payload=${payload}</arg>
+<status status="PASS" start="2024-09-08T05:00:24.884057" elapsed="0.595853"/>
+</kw>
+<kw name="Check Invalid Password Schema" owner="custom_keywords">
+<kw name="Set Test Variable" owner="BuiltIn">
+<msg time="2024-09-08T05:00:25.482454" level="INFO">${status_code} = 400</msg>
+<arg>${status_code}</arg>
+<arg>${RESPONSE.status_code}</arg>
+<doc>Makes a variable available everywhere within the scope of the current test.</doc>
+<status status="PASS" start="2024-09-08T05:00:25.480925" elapsed="0.001642"/>
+</kw>
+<kw name="convert json to dictionary" owner="StartConnection">
+<msg time="2024-09-08T05:00:25.483150" level="INFO">${content} = {'errors': {'Password': ['The Password must be at least 5 characters long.']}, 'type': 'https://tools.ietf.org/html/rfc7231#section-6.5.1', 'title': 'One or more validation errors occurred.', 'status'...</msg>
+<var>${content}</var>
+<status status="PASS" start="2024-09-08T05:00:25.482803" elapsed="0.000381"/>
+</kw>
+<kw name="convert json to dictionary" owner="StartConnection">
+<msg time="2024-09-08T05:00:25.484603" level="INFO">${expected} = {'type': 'object', 'properties': {'errors': {'type': 'object', 'properties': {'Password': {'type': 'array', 'items': {'type': 'string', 'enum': ['The Password must be at least 5 characters long.']}}},...</msg>
+<var>${expected}</var>
+<arg>file=test_data/registration/auth_wrong_pwd_schema.json</arg>
+<status status="PASS" start="2024-09-08T05:00:25.483303" elapsed="0.001346"/>
+</kw>
+<kw name="validate schema" owner="StartConnection">
+<arg>${expected}</arg>
+<arg>${content}</arg>
+<status status="PASS" start="2024-09-08T05:00:25.484809" elapsed="0.003949"/>
+</kw>
+<arg>data=registration</arg>
+<arg>test=email</arg>
+<status status="PASS" start="2024-09-08T05:00:25.480328" elapsed="0.008515"/>
+</kw>
+<doc>Verify that the API returns 400 status</doc>
+<tag>signup</tag>
+<status status="PASS" start="2024-09-08T05:00:24.882091" elapsed="0.606963"/>
+</test>
+<test id="s1-s1-t3" name="Verify mismatch passwords fail authetication" line="25">
+<kw name="setup testdata" owner="custom_keywords">
+<kw name="prepare payload" owner="StartConnection">
+<msg time="2024-09-08T05:00:25.490850" level="INFO">${payload} = {'email': 'myuser@example.com', 'fullName': 'test user', 'phoneNumber': '9415128845', 'password': '12345', 'confirmPassword': '12349'}</msg>
+<var>${payload}</var>
+<arg>path=test_data/${data}/${data}_data.json</arg>
+<arg>key=${key}</arg>
+<status status="PASS" start="2024-09-08T05:00:25.490420" elapsed="0.000611"/>
+</kw>
+<return>
+<value>${payload}</value>
+<status status="PASS" start="2024-09-08T05:00:25.491099" elapsed="0.000056"/>
+</return>
+<msg time="2024-09-08T05:00:25.491285" level="INFO">${payload} = {'email': 'myuser@example.com', 'fullName': 'test user', 'phoneNumber': '9415128845', 'password': '12345', 'confirmPassword': '12349'}</msg>
+<var>${payload}</var>
+<arg>data=registration</arg>
+<arg>key=pwd_mismatch</arg>
+<status status="PASS" start="2024-09-08T05:00:25.490054" elapsed="0.001252"/>
+</kw>
+<kw name="Post Auth Request" owner="auth_registration_page">
+<kw name="Establish Post Request" owner="StartConnection">
+<msg time="2024-09-08T05:00:26.096424" level="INFO">${RESPONSE} = &lt;Response [400]&gt;</msg>
+<arg>url=${BASE_URL}</arg>
+<arg>payload=${payload}</arg>
+<status status="PASS" start="2024-09-08T05:00:25.491805" elapsed="0.604829"/>
+</kw>
+<arg>payload=${payload}</arg>
+<status status="PASS" start="2024-09-08T05:00:25.491486" elapsed="0.605338"/>
+</kw>
+<kw name="Check Mismatched Password Schema" owner="custom_keywords">
+<kw name="Set Test Variable" owner="BuiltIn">
+<msg time="2024-09-08T05:00:26.099396" level="INFO">${status_code} = 400</msg>
+<arg>${status_code}</arg>
+<arg>${RESPONSE.status_code}</arg>
+<doc>Makes a variable available everywhere within the scope of the current test.</doc>
+<status status="PASS" start="2024-09-08T05:00:26.097974" elapsed="0.001481"/>
+</kw>
+<kw name="convert json to dictionary" owner="StartConnection">
+<msg time="2024-09-08T05:00:26.099972" level="INFO">${content} = {'errors': {'ConfirmPassword': ["'ConfirmPassword' and 'Password' do not match."]}, 'type': 'https://tools.ietf.org/html/rfc7231#section-6.5.1', 'title': 'One or more validation errors occurred.', 'st...</msg>
+<var>${content}</var>
+<status status="PASS" start="2024-09-08T05:00:26.099614" elapsed="0.000392"/>
+</kw>
+<kw name="convert json to dictionary" owner="StartConnection">
+<msg time="2024-09-08T05:00:26.102540" level="INFO">${expected} = {'type': 'object', 'properties': {'errors': {'type': 'object', 'properties': {'ConfirmPassword': {'type': 'array', 'items': {'type': 'string', 'enum': ["'ConfirmPassword' and 'Password' do not match."...</msg>
+<var>${expected}</var>
+<arg>file=test_data/registration/auth_mismatch_pwd_schema.json</arg>
+<status status="PASS" start="2024-09-08T05:00:26.100142" elapsed="0.002428"/>
+</kw>
+<kw name="validate schema" owner="StartConnection">
+<arg>${expected}</arg>
+<arg>${content}</arg>
+<status status="PASS" start="2024-09-08T05:00:26.102685" elapsed="0.003980"/>
+</kw>
+<arg>data=registration</arg>
+<arg>test=email</arg>
+<status status="PASS" start="2024-09-08T05:00:26.097341" elapsed="0.009398"/>
+</kw>
+<doc>Verify that the API returns 400 status</doc>
+<tag>signup</tag>
+<status status="PASS" start="2024-09-08T05:00:25.489294" elapsed="0.617614"/>
+</test>
+<test id="s1-s1-t4" name="Verify user cannot regsiter with a used email" line="33">
+<kw name="setup testdata" owner="custom_keywords">
+<kw name="prepare payload" owner="StartConnection">
+<msg time="2024-09-08T05:00:26.108297" level="INFO">${payload} = {'email': 'myuser@example.com', 'fullName': 'test user', 'phoneNumber': '9415128845', 'password': '12345', 'confirmPassword': '12345'}</msg>
+<var>${payload}</var>
+<arg>path=test_data/${data}/${data}_data.json</arg>
+<arg>key=${key}</arg>
+<status status="PASS" start="2024-09-08T05:00:26.107906" elapsed="0.000417"/>
+</kw>
+<return>
+<value>${payload}</value>
+<status status="PASS" start="2024-09-08T05:00:26.108376" elapsed="0.000053"/>
+</return>
+<msg time="2024-09-08T05:00:26.108562" level="INFO">${payload} = {'email': 'myuser@example.com', 'fullName': 'test user', 'phoneNumber': '9415128845', 'password': '12345', 'confirmPassword': '12345'}</msg>
+<var>${payload}</var>
+<arg>data=registration</arg>
+<arg>key=already_used_email</arg>
+<status status="PASS" start="2024-09-08T05:00:26.107628" elapsed="0.000955"/>
+</kw>
+<kw name="Post Auth Request" owner="auth_registration_page">
+<kw name="Establish Post Request" owner="StartConnection">
+<msg time="2024-09-08T05:00:26.714227" level="INFO">${RESPONSE} = &lt;Response [200]&gt;</msg>
+<arg>url=${BASE_URL}</arg>
+<arg>payload=${payload}</arg>
+<status status="PASS" start="2024-09-08T05:00:26.109049" elapsed="0.605407"/>
+</kw>
+<arg>payload=${payload}</arg>
+<status status="PASS" start="2024-09-08T05:00:26.108738" elapsed="0.605900"/>
+</kw>
+<kw name="Check Same Email Schemna" owner="custom_keywords">
+<kw name="Set Test Variable" owner="BuiltIn">
+<msg time="2024-09-08T05:00:26.717232" level="INFO">${status_code} = 200</msg>
+<arg>${status_code}</arg>
+<arg>${RESPONSE.status_code}</arg>
+<doc>Makes a variable available everywhere within the scope of the current test.</doc>
+<status status="PASS" start="2024-09-08T05:00:26.715775" elapsed="0.001515"/>
+</kw>
+<kw name="convert json to dictionary" owner="StartConnection">
+<msg time="2024-09-08T05:00:26.717726" level="INFO">${content} = {'Success': False, 'Error': 'Email already in use. please log in instead', 'Data': None}</msg>
+<var>${content}</var>
+<status status="PASS" start="2024-09-08T05:00:26.717439" elapsed="0.000313"/>
+</kw>
+<kw name="convert json to dictionary" owner="StartConnection">
+<msg time="2024-09-08T05:00:26.720246" level="INFO">${expected} = {'type': 'object', 'properties': {'Success': {'type': 'boolean', 'enum': [False]}, 'Error': {'type': 'string', 'enum': ['Email already in use. please log in instead']}, 'Data': {'type': ['object', 'nu...</msg>
+<var>${expected}</var>
+<arg>file=test_data/registration/auth_used_email_schema.json</arg>
+<status status="PASS" start="2024-09-08T05:00:26.717857" elapsed="0.002419"/>
+</kw>
+<kw name="validate schema" owner="StartConnection">
+<arg>${expected}</arg>
+<arg>${content}</arg>
+<status status="PASS" start="2024-09-08T05:00:26.720396" elapsed="0.002391"/>
+</kw>
+<arg>data=registration</arg>
+<arg>test=email</arg>
+<status status="PASS" start="2024-09-08T05:00:26.715138" elapsed="0.007722"/>
+</kw>
+<doc>Verify that the API returns 400 status</doc>
+<tag>signup</tag>
+<status status="PASS" start="2024-09-08T05:00:26.107135" elapsed="0.615921"/>
+</test>
+<test id="s1-s1-t5" name="Verify user cannot regsiter with an invalid email" line="41">
+<kw name="setup testdata" owner="custom_keywords">
+<kw name="prepare payload" owner="StartConnection">
+<msg time="2024-09-08T05:00:26.725109" level="INFO">${payload} = {'email': 'invalidexample.com', 'fullName': 'test user', 'phoneNumber': '9415128845', 'password': '12343', 'confirmPassword': '12345'}</msg>
+<var>${payload}</var>
+<arg>path=test_data/${data}/${data}_data.json</arg>
+<arg>key=${key}</arg>
+<status status="PASS" start="2024-09-08T05:00:26.724087" elapsed="0.001048"/>
+</kw>
+<return>
+<value>${payload}</value>
+<status status="PASS" start="2024-09-08T05:00:26.725188" elapsed="0.000055"/>
+</return>
+<msg time="2024-09-08T05:00:26.725358" level="INFO">${payload} = {'email': 'invalidexample.com', 'fullName': 'test user', 'phoneNumber': '9415128845', 'password': '12343', 'confirmPassword': '12345'}</msg>
+<var>${payload}</var>
+<arg>data=registration</arg>
+<arg>key=invalid_user_email</arg>
+<status status="PASS" start="2024-09-08T05:00:26.723811" elapsed="0.001568"/>
+</kw>
+<kw name="Post Auth Request" owner="auth_registration_page">
+<kw name="Establish Post Request" owner="StartConnection">
+<msg time="2024-09-08T05:00:27.321284" level="INFO">${RESPONSE} = &lt;Response [400]&gt;</msg>
+<arg>url=${BASE_URL}</arg>
+<arg>payload=${payload}</arg>
+<status status="PASS" start="2024-09-08T05:00:26.725846" elapsed="0.595903"/>
+</kw>
+<arg>payload=${payload}</arg>
+<status status="PASS" start="2024-09-08T05:00:26.725535" elapsed="0.596428"/>
+</kw>
+<kw name="Check Invalid Email Schemna" owner="custom_keywords">
+<kw name="Set Test Variable" owner="BuiltIn">
+<msg time="2024-09-08T05:00:27.324789" level="INFO">${status_code} = 400</msg>
+<arg>${status_code}</arg>
+<arg>${RESPONSE.status_code}</arg>
+<doc>Makes a variable available everywhere within the scope of the current test.</doc>
+<status status="PASS" start="2024-09-08T05:00:27.323240" elapsed="0.001612"/>
+</kw>
+<kw name="convert json to dictionary" owner="StartConnection">
+<msg time="2024-09-08T05:00:27.325877" level="INFO">${content} = {'errors': {'Email': ['The Email field is not a valid e-mail address.'], 'ConfirmPassword': ["'ConfirmPassword' and 'Password' do not match."]}, 'type': 'https://tools.ietf.org/html/rfc7231#section-6....</msg>
+<var>${content}</var>
+<status status="PASS" start="2024-09-08T05:00:27.325483" elapsed="0.000430"/>
+</kw>
+<kw name="convert json to dictionary" owner="StartConnection">
+<msg time="2024-09-08T05:00:27.327940" level="INFO">${expected} = {'type': 'object', 'properties': {'errors': {'type': 'object', 'properties': {'Password': {'type': 'array', 'items': {'type': 'string', 'enum': ['The Email field is not a valid e-mail address.']}}}, '...</msg>
+<var>${expected}</var>
+<arg>file=test_data/registration/auth_invalid_email_schema.json</arg>
+<status status="PASS" start="2024-09-08T05:00:27.326055" elapsed="0.001916"/>
+</kw>
+<kw name="validate schema" owner="StartConnection">
+<arg>${expected}</arg>
+<arg>${content}</arg>
+<status status="PASS" start="2024-09-08T05:00:27.328094" elapsed="0.004123"/>
+</kw>
+<arg>data=registration</arg>
+<arg>test=email</arg>
+<status status="PASS" start="2024-09-08T05:00:27.322535" elapsed="0.009792"/>
+</kw>
+<doc>Verify that the API returns 400 status</doc>
+<tag>signup</tag>
+<status status="PASS" start="2024-09-08T05:00:26.723317" elapsed="0.609234"/>
+</test>
+<status status="FAIL" start="2024-09-08T05:00:24.045459" elapsed="3.287618"/>
+</suite>
+<status status="FAIL" start="2024-09-08T05:00:24.035132" elapsed="3.298539"/>
+</suite>
+<statistics>
+<total>
+<stat pass="4" fail="1" skip="0">All Tests</stat>
+</total>
+<tag>
+<stat pass="4" fail="1" skip="0">signup</stat>
+</tag>
+<suite>
+<stat pass="4" fail="1" skip="0" id="s1" name="Auth Registration Test">Auth Registration Test</stat>
+<stat pass="4" fail="1" skip="0" id="s1-s1" name="Auth Registration Test">Auth Registration Test.Auth Registration Test</stat>
+</suite>
+</statistics>
+<errors>
+</errors>
+</robot>
